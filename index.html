@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<base target="_top">
+
+<style>
+
+body{
+margin:0;
+padding:20px;
+font-family:Arial,sans-serif;
+background:#f2f6fb;
+text-align:center;
+}
+
+.header{
+background:#1976d2;
+color:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+.logo-wrap{
+position:relative;
+width:120px;
+height:120px;
+margin:0 auto;
+overflow:hidden;
+border-radius:50%;
+clip-path:circle(50%);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.logo-wrap img{
+height:100%;
+width:auto;
+display:block;
+animation:logoGlow 6s ease-in-out infinite;
+}
+
+.logo-wrap::after{
+content:"";
+position:absolute;
+inset:0;
+clip-path:circle(50%);
+background:linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.95) 48%, rgba(255,255,255,0) 66%);
+background-size:300% 300%;
+background-position:200% 0%;
+-webkit-mask-image:url('https://drive.google.com/thumbnail?id=1Rk1xVXKI1zIwN_Q70j_0PimtuXDH74rd&sz=w300');
+-webkit-mask-size:contain;
+-webkit-mask-repeat:no-repeat;
+-webkit-mask-position:center;
+mask-image:url('https://drive.google.com/thumbnail?id=1Rk1xVXKI1zIwN_Q70j_0PimtuXDH74rd&sz=w300');
+mask-size:contain;
+mask-repeat:no-repeat;
+mask-position:center;
+animation:shineSweep 6s ease-in-out infinite;
+pointer-events:none;
+}
+
+@keyframes shineSweep{
+0%{ background-position:200% 0%; }
+50%{ background-position:-100% 0%; }
+100%{ background-position:-100% 0%; }
+}
+
+@keyframes logoGlow{
+0%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+50%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+56%{ filter:brightness(1.7) drop-shadow(0 0 18px rgba(255,255,255,0.9)); }
+62%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+100%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+}
+
+.title{
+color:#ffffff;
+font-weight:700;
+font-size:24px;
+margin-top:12px;
+letter-spacing:0.3px;
+-webkit-text-stroke:0.6px #000;
+text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.container{
+max-width:600px;
+margin:20px auto;
+}
+
+
+.store-button{
+
+width:90%;
+max-width:420px;
+
+padding:15px;
+margin:10px auto;
+
+display:block;
+
+background:white;
+color:#1976d2;
+
+border-radius:15px;
+
+font-size:20px;
+font-weight:bold;
+
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+cursor:pointer;
+
+text-decoration:none;
+
+}
+
+
+.store-button:hover{
+
+background:#1976d2;
+color:white;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+
+<div class="logo-wrap">
+<img src="https://drive.google.com/thumbnail?id=1Rk1xVXKI1zIwN_Q70j_0PimtuXDH74rd&sz=w300">
+</div>
+
+
+<div class="title">
+Shop Link Update Center
+</div>
+
+
+</div>
+
+
+
+<div class="container">
+
+
+<a class="store-button" href="store.html?p=R7kP92xLm4">
+Bangkapi
+</a>
+
+
+<a class="store-button" href="store.html?p=T8Qa51zNv3">
+Fashion Island
+</a>
+
+
+<a class="store-button" href="store.html?p=H4mX83Lp91">
+Future Park
+</a>
+
+
+<a class="store-button" href="store.html?p=W9sK27aQ54">
+Icon Siam
+</a>
+
+
+<a class="store-button" href="store.html?p=P6nR82vLm7">
+ICS
+</a>
+
+
+<a class="store-button" href="store.html?p=A5vN73qLk8">
+Nakhon Pathom
+</a>
+
+
+<a class="store-button" href="store.html?p=M9xQ41pLs6">
+Ngamongwan 1F
+</a>
+
+
+<a class="store-button" href="store.html?p=K8rT52mVn7">
+Paragon Dep
+</a>
+
+
+<a class="store-button" href="store.html?p=F3pL84xQm9">
+Pinklao TF Fl2
+</a>
+
+
+<a class="store-button" href="store.html?p=B7nM62kQp5">
+PR Bangna
+</a>
+
+
+<a class="store-button" href="store.html?p=C9vR51xLm8">
+PR Chaengwatana
+</a>
+
+
+<a class="store-button" href="store.html?p=D4qT83nLp6">
+PR Eastville
+</a>
+
+
+<a class="store-button" href="store.html?p=E8mK72vQp4">
+PR Fashion Island
+</a>
+
+
+<a class="store-button" href="store.html?p=G5xN91rLm3">
+PR Future Park
+</a>
+
+
+<a class="store-button" href="store.html?p=J6pQ43kVn8">
+PR Ladprao
+</a>
+
+
+<a class="store-button" href="store.html?p=L9mT52xQp7">
+PR Mega Bangna
+</a>
+
+
+<a class="store-button" href="store.html?p=N4vK83pLm5">
+PR Pinklao
+</a>
+
+
+<a class="store-button" href="store.html?p=Q7rM61xVn9">
+PR Rama2
+</a>
+
+
+<a class="store-button" href="store.html?p=S8pL42qKm6">
+Thapra TF
+</a>
+
+
+<a class="store-button" href="store.html?p=V3xK75mQn2">
+Ngamwongwan TF
+</a>
+
+
+<a class="store-button" href="store.html?p=U8pR46vLk3">
+PR Westville
+</a>
+
+
+</div>
+
+
+</body>
+</html>
