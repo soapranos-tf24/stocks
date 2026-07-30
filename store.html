@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<base target="_top">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Bitter:wght@700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:'Poppins',Arial,sans-serif;
+    background-color:#1976d2;
+    background-image:
+        linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.05) 8%, transparent 18%, rgba(0,40,90,0.07) 30%, transparent 42%, rgba(255,255,255,0.04) 55%, transparent 66%, rgba(0,35,85,0.06) 80%, transparent 92%),
+        linear-gradient(115deg, transparent 5%, rgba(0,30,75,0.05) 20%, transparent 33%, rgba(255,255,255,0.045) 48%, transparent 60%, rgba(0,40,90,0.05) 74%, transparent 88%),
+        linear-gradient(150deg, rgba(255,255,255,0.035) 0%, transparent 22%, rgba(0,45,95,0.045) 45%, transparent 63%, rgba(255,255,255,0.03) 80%, transparent 100%);
+    background-size:260% 260%, 220% 220%, 300% 300%;
+    background-position:0% 0%, 100% 20%, 30% 100%;
+    background-attachment:fixed;
+}
+
+/* ===== Верхняя шапка: текст + (лого/инструкции) ===== */
+
+.page-wrap{
+    position:relative;
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.logo-float{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    z-index:2;
+    pointer-events:none;
+}
+
+.topbar{
+    max-width:1000px;
+    margin:0 auto;
+    color:white;
+    box-sizing:border-box;
+    padding:0 1cm;
+}
+
+.warning-en{
+    font-family:'Bitter',Georgia,serif;
+    color:#ff6b6b;
+    font-weight:800;
+    font-size:22px;
+    text-align:center;
+    white-space:nowrap;
+    margin:0 0 6px 0;
+    letter-spacing:0.3px;
+    -webkit-text-stroke:0.55px #000;
+    text-shadow:
+        0 2px 0 rgba(0,0,0,0.35),
+        0 4px 7px rgba(0,0,0,0.40);
+    transform:translateX(4cm);
+}
+
+.warning-th{
+    font-family:'Poppins',Arial,sans-serif;
+    color:#ff6b6b;
+    font-weight:700;
+    font-size:27px;
+    text-align:center;
+    white-space:nowrap;
+    margin:0 0 18px 0;
+    letter-spacing:0.3px;
+    -webkit-text-stroke:0.7px #000;
+    text-shadow:
+        0 2px 0 rgba(0,0,0,0.35),
+        0 4px 7px rgba(0,0,0,0.40);
+    transform:translateX(4cm);
+}
+
+.stack-grid{
+    display:grid;
+    grid-template-columns:0.85fr 2.15fr;
+    column-gap:1cm;
+    row-gap:14px;
+}
+
+.logo-wrap{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    border-radius:50%;
+    clip-path:circle(50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo-wrap img{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+    display:block;
+    animation:logoGlow 4s ease-in-out infinite;
+}
+
+.logo-wrap::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    clip-path:circle(50%);
+    background:linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.95) 48%, rgba(255,255,255,0) 66%);
+    background-size:300% 300%;
+    background-position:200% 0%;
+    -webkit-mask-image:url('https://drive.google.com/thumbnail?id=1Rk1xVXKI1zIwN_Q70j_0PimtuXDH74rd&sz=w300');
+    -webkit-mask-size:contain;
+    -webkit-mask-repeat:no-repeat;
+    -webkit-mask-position:center;
+    mask-image:url('https://drive.google.com/thumbnail?id=1Rk1xVXKI1zIwN_Q70j_0PimtuXDH74rd&sz=w300');
+    mask-size:contain;
+    mask-repeat:no-repeat;
+    mask-position:center;
+    animation:shineSweep 4s ease-in-out infinite;
+    pointer-events:none;
+}
+
+@keyframes shineSweep{
+    0%{ background-position:200% 0%; }
+    50%{ background-position:-100% 0%; }
+    100%{ background-position:-100% 0%; }
+}
+
+@keyframes logoGlow{
+    0%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+    32%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+    50%{ filter:brightness(1.7) drop-shadow(0 0 18px rgba(255,255,255,0.9)); }
+    68%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+    100%{ filter:brightness(1) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+}
+
+.instructions{
+    flex:1;
+    align-self:start;
+    grid-column:2;
+    grid-row:1;
+    margin-top:1cm;
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    background-color:#f3f9fd;
+    background-image:
+        linear-gradient(135deg, transparent 0%, rgba(25,118,210,0.045) 10%, transparent 22%, rgba(255,255,255,0.6) 38%, transparent 52%, rgba(25,118,210,0.035) 68%, transparent 82%),
+        linear-gradient(115deg, transparent 8%, rgba(25,118,210,0.03) 25%, transparent 40%, rgba(25,118,210,0.04) 62%, transparent 78%);
+    background-size:220% 220%, 260% 260%;
+    background-position:0% 0%, 100% 40%;
+    border-radius:14px;
+    padding:10px 14px;
+    box-sizing:border-box;
+    border:1px solid rgba(255,255,255,0.75);
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.28),
+        inset 0 2px 0 rgba(255,255,255,1),
+        inset 0 -3px 6px rgba(0,0,0,0.14);
+}
+
+.instructions .col{
+    width:48%;
+}
+
+.instructions .col div{
+    margin-bottom:6px;
+    font-size:17px;
+    font-weight:500;
+    color:#2b2b2b;
+}
+
+.instructions .col div:last-child{
+    margin-bottom:0;
+}
+
+/* ===== Полоса с кнопками под инструкциями ===== */
+
+.action-row{
+    grid-column:2;
+    grid-row:2;
+    display:flex;
+    align-items:flex-start;
+    padding-right:14px;
+}
+
+.action-sector{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 0;
+}
+
+.thankyou-sector{
+    flex:1 1 auto;
+}
+
+.clear-sector{
+    flex:0 0 auto;
+    margin-right:16px;
+}
+
+.save-sector{
+    flex:0 0 auto;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    padding-top:6px;
+}
+
+.action-row button{
+    border:1.5px solid #000;
+    border-radius:8px;
+    padding:0 14px;
+    height:41px;
+    box-sizing:border-box;
+    font-size:15px;
+    cursor:pointer;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#clearBtn{
+    background:#f44336;
+}
+
+#saveBtn{
+    background:#1976d2;
+    width:112px;
+    box-sizing:border-box;
+}
+
+.last-update-box{
+    width:112px;
+    height:41px;
+    box-sizing:border-box;
+    background:#e0e0e0;
+    border-radius:8px;
+    padding:2px 4px;
+    border:1.5px solid #000;
+    text-align:center;
+    line-height:1.2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.lu-label{
+    font-size:8px;
+    font-weight:700;
+    color:#000;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+}
+
+#lastUpdateText{
+    font-size:9px;
+    font-weight:700;
+    color:#000;
+    white-space:nowrap;
+}
+
+.last-update-box.color-green{
+    background:#8fe08f;
+}
+
+.last-update-box.color-orange{
+    background:#ffb74d;
+}
+
+.last-update-box.color-red{
+    background:#f0837e;
+}
+
+.thank-you{
+    font-family:'Fredoka','Poppins',Arial,sans-serif;
+    font-weight:600;
+    text-align:center;
+    padding:8px 14px;
+    border-radius:14px;
+    opacity:0;
+    transition:opacity 0.6s ease;
+    pointer-events:none;
+    white-space:nowrap;
+}
+
+.thank-you .line1{
+    font-size:16px;
+}
+
+.thank-you .line2{
+    font-size:13px;
+    margin-top:2px;
+}
+
+.thank-you .line3{
+    font-size:18px;
+    margin-top:3px;
+}
+
+.thank-you.show{
+    opacity:1;
+}
+
+@media (max-width:900px){
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .warning-en,
+    .warning-th{
+        white-space:normal;
+        font-size:16px;
+        transform:none;
+    }
+
+    .lower-row{
+        flex-direction:column;
+    }
+
+    .instructions{
+        flex-direction:column;
+    }
+
+    .instructions .col{
+        width:100%;
+    }
+
+    .instructions .col div{
+        white-space:normal;
+        font-size:16px;
+    }
+
+    .action-row{
+        flex-direction:column;
+    }
+
+    .thank-you{
+        white-space:normal;
+    }
+
+}
+
+/* ===== Отступ, чтобы белое окошко ушло ниже ===== */
+
+.container{
+    max-width:1000px;
+    margin:1.2cm auto 0 auto;
+    background-color:#f3f9fd;
+    background-image:
+        linear-gradient(135deg, transparent 0%, rgba(25,118,210,0.04) 12%, transparent 24%, rgba(255,255,255,0.55) 40%, transparent 55%, rgba(25,118,210,0.035) 70%, transparent 85%),
+        linear-gradient(115deg, transparent 6%, rgba(25,118,210,0.03) 22%, transparent 38%, rgba(25,118,210,0.04) 58%, transparent 74%),
+        linear-gradient(150deg, rgba(255,255,255,0.4) 0%, transparent 20%, rgba(25,118,210,0.025) 45%, transparent 65%);
+    background-size:230% 230%, 260% 260%, 300% 300%;
+    background-position:0% 0%, 100% 30%, 40% 100%;
+    border-radius:15px;
+    padding:20px;
+    border:1px solid rgba(0,0,0,0.06);
+    box-shadow:
+        0 14px 32px rgba(0,0,0,0.30),
+        inset 0 2px 0 rgba(255,255,255,1),
+        inset 0 -3px 6px rgba(0,0,0,0.10);
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.title-wrap{
+    flex:1;
+    text-align:center;
+}
+
+h2{
+    margin:0;
+    color:#1a1a1a;
+    font-family:'Bitter',Georgia,serif;
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:0.3px;
+    -webkit-text-stroke:0.5px #000;
+    text-shadow:
+        0 2px 0 rgba(0,0,0,0.25),
+        0 4px 7px rgba(0,0,0,0.30);
+}
+
+.product{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:7px;
+    margin-bottom:3px;
+    border-radius:6px;
+    box-shadow:inset 2px 2px 4px rgba(255,255,255,0.65), inset -2px -2px 4px rgba(0,0,0,0.15);
+}
+
+.product span{
+    width:65%;
+    text-align:left;
+    font-weight:500;
+}
+
+.product input{
+    width:70px;
+    padding:7px;
+    text-align:center;
+    font-size:16px;
+}
+
+.seacret{
+    background:#bbdefb;
+}
+
+.gratiae{
+    background:#fff59d;
+}
+
+.premier{
+    background:#e0e0e0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page-wrap" id="pageWrap">
+
+<div class="logo-float" id="logoFloat">
+    <div class="logo-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1Rk1xVXKI1zIwN_Q70j_0PimtuXDH74rd&sz=w300">
+    </div>
+</div>
+
+<div class="topbar">
+
+    <div class="warning-en">
+        Please remember to update the file before closing the store.
+    </div>
+
+    <div class="warning-th">
+        กรุณาอัปเดตไฟล์ก่อนปิดร้านทุกครั้ง
+    </div>
+
+    <div class="stack-grid">
+
+        <div class="instructions">
+
+            <div class="col">
+                <div>1. Push the Clear button</div>
+                <div>2. Enter products quantity</div>
+                <div>3. Push Save and wait for ✔</div>
+                <div>4. Close the file</div>
+            </div>
+
+            <div class="col">
+                <div>1. กดปุ่ม Clear (ล้างข้อมูล)</div>
+                <div>2. กรอกจำนวนสินค้า</div>
+                <div>3. กดปุ่ม Save แล้วรอเครื่องหมายถูก ✔</div>
+                <div>4. ปิดไฟล์</div>
+            </div>
+
+        </div>
+
+        <div class="action-row">
+
+            <div class="action-sector thankyou-sector">
+                <div id="thankYouMsg" class="thank-you">
+                    <div id="thankYouLine1" class="line1"></div>
+                    <div id="thankYouLine2" class="line2"></div>
+                    <div class="line3">🙏</div>
+                </div>
+            </div>
+
+            <div class="action-sector clear-sector">
+                <button id="clearBtn" onclick="clearData()">
+                🗑 Clear
+                </button>
+            </div>
+
+            <div class="action-sector save-sector">
+                <button id="saveBtn" onclick="save()">
+                💾 Save
+                </button>
+                <div class="last-update-box" id="lastUpdateBox">
+                    <div class="lu-label">Last update</div>
+                    <div id="lastUpdateText">—</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<div class="title-wrap">
+<h2 id="title"></h2>
+</div>
+
+</div>
+
+
+
+<div id="products">
+Loading...
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script>
+
+
+var WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxGEZIC0wGHX7b5M7_YI9FZNZzMVJ_JuuNrEyW_OdgJSYodwOButdgtbdQ8YWUfzv72cQ/exec";
+
+var currentStore = "";
+
+var products = [];
+
+
+
+function apiGet(action, params){
+
+    var url = WEBAPP_URL + "?action=" + encodeURIComponent(action);
+
+    if(params){
+
+        Object.keys(params).forEach(function(key){
+
+            url += "&" + encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
+
+        });
+
+    }
+
+    return fetch(url).then(function(res){
+
+        return res.json();
+
+    });
+
+}
+
+
+function apiPost(payload){
+
+    return fetch(WEBAPP_URL, {
+
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+
+    }).then(function(res){
+
+        return res.json();
+
+    });
+
+}
+
+
+
+
+function positionLogo(){
+
+    var wrap = document.getElementById("pageWrap");
+    var instr = document.querySelector(".instructions");
+    var cont = document.querySelector(".container");
+    var floatEl = document.getElementById("logoFloat");
+
+    if(!wrap || !instr || !cont || !floatEl){
+
+        return;
+
+    }
+
+    var wrapRect = wrap.getBoundingClientRect();
+    var instrRect = instr.getBoundingClientRect();
+    var contRect = cont.getBoundingClientRect();
+
+    var instrLeft = instrRect.left - wrapRect.left;
+    var instrBottom = instrRect.bottom - wrapRect.top;
+
+    var margin = instrLeft - instrBottom;
+
+    var side = instrBottom - margin;
+
+    var growth = 38; /* ~1cm — grows up-left, bottom/right edges stay fixed */
+
+    margin = margin - growth;
+    side = side + growth;
+
+    if(side < 60){
+
+        side = 60;
+        margin = Math.max(0, instrBottom - side);
+
+    }
+
+    if(margin < 0){
+
+        margin = 0;
+
+    }
+
+    floatEl.style.left = margin + "px";
+    floatEl.style.top = margin + "px";
+    floatEl.style.width = side + "px";
+    floatEl.style.height = side + "px";
+
+}
+
+window.addEventListener("load", positionLogo);
+window.addEventListener("resize", positionLogo);
+setTimeout(positionLogo, 400);
+
+
+
+
+function loadProducts(){
+
+    apiGet("getProducts", { store: currentStore }).then(function(data){
+
+        products = data;
+
+        var html = "";
+
+
+        data.forEach(function(item,index){
+
+
+            var colorClass = item.category || "seacret";
+
+
+            html +=
+
+            "<div class='product "+colorClass+"'>"+
+
+            "<span>"+item.name+"</span>"+
+
+            "<input type='number' id='p"+index+"' value='"+(item.value || "")+"'>"+
+
+            "</div>";
+
+
+
+        });
+
+
+
+        document.getElementById("products").innerHTML = html;
+
+        positionLogo();
+
+
+    });
+
+}
+
+
+
+
+function refreshLastUpdate(){
+
+    apiGet("getLastUpdate", { store: currentStore }).then(function(info){
+
+        var box = document.getElementById("lastUpdateBox");
+        var el = document.getElementById("lastUpdateText");
+
+        if(!info){
+
+            el.textContent = "—";
+            box.className = "last-update-box";
+            return;
+
+        }
+
+        el.textContent = info.text;
+        box.className = "last-update-box color-" + info.color;
+
+    });
+
+}
+
+
+
+
+function clearData(){
+
+
+    if(!confirm("Clear all values?")){
+
+        return;
+
+    }
+
+
+    products.forEach(function(item,index){
+
+
+        var el=document.getElementById("p"+index);
+
+
+        if(el){
+
+            el.value="";
+
+        }
+
+
+    });
+
+
+}
+
+
+
+
+
+function playThankYouAnimation(){
+
+    var box = document.getElementById("thankYouMsg");
+    var line1 = document.getElementById("thankYouLine1");
+    var line2 = document.getElementById("thankYouLine2");
+
+    line1.textContent = "Thank you";
+    line2.textContent = "ขอบคุณ";
+    box.style.background = "#ffe14d";
+    box.style.color = "#c62828";
+    box.classList.add("show");
+
+    setTimeout(function(){
+
+        box.classList.remove("show");
+
+    }, 1500);
+
+    setTimeout(function(){
+
+        line1.textContent = "Have a safe trip home!";
+        line2.textContent = "เดินทางกลับบ้านปลอดภัยนะครับ";
+        box.style.background = "#c8f7c5";
+        box.style.color = "#256029";
+        box.classList.add("show");
+
+    }, 2100);
+
+    setTimeout(function(){
+
+        box.classList.remove("show");
+
+    }, 4100);
+
+}
+
+
+
+
+
+function save(){
+
+
+    var rows=[];
+
+
+    products.forEach(function(item,index){
+
+
+        var el=document.getElementById("p"+index);
+
+
+        if(el){
+
+
+            rows.push(
+                item.row+"|"+el.value
+            );
+
+
+        }
+
+
+    });
+
+
+
+    var btn=document.getElementById("saveBtn");
+
+
+    btn.disabled=true;
+
+    btn.innerHTML="Saving...";
+
+
+
+    apiPost({ store: currentStore, rows: rows }).then(function(){
+
+
+        btn.style.background="#2e7d32";
+
+        btn.innerHTML="✔ Saved";
+
+        playThankYouAnimation();
+
+        refreshLastUpdate();
+
+
+        setTimeout(function(){
+
+
+            btn.style.background="#1976d2";
+
+            btn.innerHTML="💾 Save";
+
+            btn.disabled=false;
+
+
+        },1000);
+
+
+
+    });
+
+
+
+}
+
+
+
+
+function init(){
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var storeCode = urlParams.get("p") || "";
+
+    apiGet("getStoreName", { p: storeCode }).then(function(data){
+
+        if(!data || !data.name){
+
+            document.getElementById("title").innerHTML = "Store not found";
+            document.getElementById("products").innerHTML = "";
+            return;
+
+        }
+
+        currentStore = data.name;
+
+        document.getElementById("title").innerHTML = currentStore;
+
+        loadProducts();
+        refreshLastUpdate();
+
+    });
+
+}
+
+init();
+
+
+</script>
+
+
+</body>
+</html>
